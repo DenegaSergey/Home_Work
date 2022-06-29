@@ -6,24 +6,19 @@ namespace Task_1_HW04.Birthday
     {
         static void Main(string[] args)
         {
-            var today = DateTime.Today;
+            var today = DateTime.Now;
 
             Console.WriteLine("Enter your Birthday in DD-MM-YYYY format: ");
 
             var bDay = Console.ReadLine();
             var myDate = Convert.ToDateTime(bDay);
-
             var age = today.Year - myDate.Year; //Calculate age.
-
             
-            if (myDate.Date > today.AddYears(-age)) age--;
+            if (myDate.Date > today.AddYears(-age)) age++;
 
             Console.WriteLine($"You are {age} years old"); //Displaying the result on the screen.
 
-            // HACK: This code is temporary and can be removed.
-            Console.ReadKey();
-
-
+            Console.ReadKey();  // HACK: This code is temporary and can be removed.
         }
     }
 }
