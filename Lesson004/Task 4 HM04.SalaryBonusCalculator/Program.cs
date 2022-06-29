@@ -9,16 +9,16 @@ namespace Task_4_HW04.SalaryBonusCalculator
             Console.Write("Your salary: ");
             int salary = int.Parse(Console.ReadLine());
 
-            Console.Write("Your seniority: ");
-            int seniority = int.Parse(Console.ReadLine());
+            Console.Write("Your experience: ");
+            int experience = int.Parse(Console.ReadLine());
 
             double bonus = 0;
-            if (seniority < 5) bonus = 0.10;
-            if (seniority >= 5 && seniority < 10) bonus = 0.15;
-            if (seniority >= 10 && seniority < 15) bonus = 0.25;
-            if (seniority >= 15 && seniority < 20) bonus = 0.35;
-            if (seniority >= 20 && seniority < 25) bonus = 0.45;
-            if (seniority >= 50) bonus = 0.50;
+            if (experience < 5) bonus = 0.10;
+            if (experience >= 5 && experience < 10) bonus = 0.15;
+            if (experience >= 10 && experience < 15) bonus = 0.25;
+            if (experience >= 15 && experience < 20) bonus = 0.35;
+            if (experience >= 20 && experience < 25) bonus = 0.45;
+            if (experience >= 50) bonus = 0.50;
 
             double payoff = salary + (Math.Round(salary * bonus, 2));
 
