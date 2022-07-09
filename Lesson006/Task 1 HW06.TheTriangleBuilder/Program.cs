@@ -10,14 +10,14 @@ namespace Task1HW06.TheTriangleBuilder
 
             int value = 1;
 
-            for (int lines = userInput; lines >= 1; lines--)
+            for (int i = userInput; i >= 1; i--)
             {
-                for (int spaces = userInput - 1; spaces >= lines; spaces--)
+                for (int j = userInput - 1; j >= i; j--)
                 {
                     Console.Write(" ");
                 }
 
-                for (int colums = 1; colums <= lines; colums++)
+                for (int k = 1; k <= i; k++)
                 {
                     Console.Write(value);
                     Console.Write(" ");
