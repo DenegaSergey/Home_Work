@@ -27,13 +27,14 @@ namespace Task_2_HW06.ThirdArrayCreator
                 arrayKeyboardInput[i] = int.Parse(Console.ReadLine());
 
             int[] sumOfArchives = new int[5];
-            for (int i = 0; i < 5; ++i)
+            for (int i = 0; i < sumOfArchives.Length; ++i)
             {
                 sumOfArchives[i] = arrayRandomInput[i] + arrayKeyboardInput[i];
             }
 
             Console.WriteLine("Array content: ");
             Console.WriteLine(string.Join("  ", sumOfArchives));
+            Console.ReadKey();
         }
     }
 }
