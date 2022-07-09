@@ -1,39 +1,45 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
-namespace Task_2_HW06.ThirdArrayCreator
+namespace Task3HW06.ArrayModifier
 {
     internal class Program
     {
         static void Main(string[] args)
         {
-            int[] arrayRandomInput = new int[5];
-            Random random = new Random();
+            Console.Write("Enter the number of array elements:\t");
 
-            for (int i = 0; i < arrayRandomInput.Length; i++)
+            int elementsCount = int.Parse(Console.ReadLine());
+            int[] myArrey = new int[elementsCount];
+
+            for (int i = 0; i < elementsCount - 1; i++)
             {
-                arrayRandomInput[i] = random.Next(20);
-                Console.WriteLine("Array element value " +  " = " + arrayRandomInput[i]);
+                myArrey[i] = int.Parse(Console.ReadLine());
             }
 
-            int[] arrayKeyboardInput = new int[5];
+            int lastNumber = 0;
 
-            Console.WriteLine("Keyboard input: ");
+            Console.Write("Enter last value: ");
+            lastNumber = Convert.ToInt32(Console.ReadLine());
 
-            for (int i = 0; i < arrayKeyboardInput.Length; i++)
-                arrayKeyboardInput[i] = int.Parse(Console.ReadLine());
+            myArrey[myArrey.Length - 1] = lastNumber;
 
-            int[] sumOfArchives = new int[5];
-            for (int i = 0; i < 5; ++i)
+            int rightShift = myArrey[myArrey.Length - 1];
+
+            for (int i = myArrey.Length - 1; i > 0; i--) //How to rotate an array to the left?
             {
-                sumOfArchives[i] = arrayRandomInput[i] + arrayKeyboardInput[i];
+                myArrey[i] = myArrey[i - 1];
             }
 
-            Console.WriteLine("Array content: ");
-            Console.WriteLine(string.Join("  ", sumOfArchives));
+            myArrey[0] = rightShift;
+
+            Console.WriteLine("Array output:");
+
+            for (int i = 0; i < myArrey.Length; i++)
+            {
+                Console.WriteLine(myArrey[i]);
+            }
+
+            Console.ReadKey();
         }
     }
 }
