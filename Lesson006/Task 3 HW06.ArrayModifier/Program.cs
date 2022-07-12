@@ -4,18 +4,29 @@ namespace Task3HW06.ArrayModifier
 {
     internal class Program
     {
-        static void Main(string[] args)
+        static void DisplayingAnArray(int[] myArrey)
         {
-            Console.Write("Enter the number of array elements:\t");
+            Console.WriteLine("Array output:");
 
-            int elementsCount = int.Parse(Console.ReadLine());
-            int[] myArrey = new int[elementsCount];
-
-            for (int i = 0; i < elementsCount - 1; i++)
+            for (int i = 0; i < myArrey.Length; i++)
             {
-                myArrey[i] = int.Parse(Console.ReadLine());
+                Console.WriteLine(myArrey[i]);
             }
 
+        }
+        static int[] ToLeft(int[] myArrey)
+        {
+            int toLeft = myArrey[0];
+            for (int i = 0; i < myArrey.Length - 1; i++)
+            {
+                myArrey[i] = myArrey[i + 1];
+            }
+            myArrey[myArrey.Length - 1] = toLeft;
+
+            return myArrey;
+        }
+        static int LastNumberInArray(int[] myArrey)
+        {
             int lastNumber = 0;
 
             Console.Write("Enter last value: ");
@@ -23,21 +34,29 @@ namespace Task3HW06.ArrayModifier
 
             myArrey[myArrey.Length - 1] = lastNumber;
 
-            int rightShift = myArrey[myArrey.Length - 1];
+            return lastNumber;
+        }
+        static int[] NumberOfElementsInArray()
+        {
+            Console.Write("Enter the size of the array: ");
+            int elementsCount = int.Parse(Console.ReadLine());
+            int[] myArrey = new int[elementsCount];
 
-            for (int i = myArrey.Length - 1; i > 0; i--) //How to rotate an array to the left?
+            for (int i = 0; i < elementsCount - 1; i++)
             {
-                myArrey[i] = myArrey[i - 1];
+                myArrey[i] = int.Parse(Console.ReadLine());
             }
+            return myArrey;
+        }
+        static void Main(string[] args)
+        {
+            int[] myArrey = NumberOfElementsInArray();
 
-            myArrey[0] = rightShift;
+            int lastNumber = LastNumberInArray(myArrey);
 
-            Console.WriteLine("Array output:");
+            int[] myArreySecond = ToLeft(myArrey); //move the element to the left
 
-            for (int i = 0; i < myArrey.Length; i++)
-            {
-                Console.WriteLine(myArrey[i]);
-            }
+            DisplayingAnArray(myArrey);
 
             Console.ReadKey();
         }
