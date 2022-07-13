@@ -4,6 +4,26 @@ namespace Task5HW07.BookStore
 {
     internal class Program
     {
+        static void ExpensiveBook(int[,,] arreyBooks, int max)
+        {
+            for (int i = 0; i < arreyBooks.GetLength(0); i++)
+                for (int j = 0; j < arreyBooks.GetLength(1); j++)
+                    for (int k = 0; k < arreyBooks.GetLength(2); k++)
+                        if (arreyBooks[i, j, k] > max)
+                            max = arreyBooks[i, j, k];
+
+            Console.WriteLine("Most expensive book: " + max);
+        }
+        static void CheapestBook(int[,,] arreyBooks, int min)
+        {
+            for (int i = 0; i < arreyBooks.GetLength(0); i++)
+                for (int j = 0; j < arreyBooks.GetLength(1); j++)
+                    for (int k = 0; k < arreyBooks.GetLength(2); k++)
+                        if (arreyBooks[i, j, k] < min)
+                            min = arreyBooks[i, j, k];
+
+            Console.WriteLine("The cheapest book: " + min);
+        }
         static void Main(string[] args)
         {
             int[,,] arreyBooks =
@@ -28,23 +48,10 @@ namespace Task5HW07.BookStore
                 }
             };
 
-            int max = arreyBooks[0, 0, 0], min = arreyBooks[0, 0, 0];
+            int max = int.MinValue, min = int.MaxValue;
 
-            for (int i = 0; i < arreyBooks.GetLength(0); i++)
-                for (int j = 0; j < arreyBooks.GetLength(1); j++)
-                    for (int k = 0; k < arreyBooks.GetLength(2); k++)
-                        if (arreyBooks[i, j, k] < min)
-                            min = arreyBooks[i, j, k];
-
-            Console.WriteLine("The cheapest book: " + min);
-
-            for (int i = 0; i < arreyBooks.GetLength(0); i++)
-                for (int j = 0; j < arreyBooks.GetLength(1); j++)
-                    for (int k = 0; k < arreyBooks.GetLength(2); k++)
-                        if (arreyBooks[i, j, k] > max)
-                            max = arreyBooks[i, j, k];
-
-            Console.WriteLine("Most expensive book: " + max);
+            CheapestBook(arreyBooks, min);
+            ExpensiveBook(arreyBooks, max);
         }
     }
 }
