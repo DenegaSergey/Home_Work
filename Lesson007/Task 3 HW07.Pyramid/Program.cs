@@ -6,27 +6,42 @@ namespace Task3HW07.Pyramid
     {
         static void Main(string[] args)
         {
-            int[,] arrey = new int[4, 5];
+            int rowCount = 4;
+            int colummneCount = 5;
+            int[,] myArrey = new int[rowCount, colummneCount];
 
-            for (int y = 0; y < arrey.GetLength(0); y++) //высота массива
+            int displayValueZero = 0;
+            int displayValueOne = 1;
+            int middleValueOne = (colummneCount - 1) / 2; 
+            int middleValueTwo = (colummneCount - 1) / 2;
+
+            for (int i = 0; i < myArrey.GetLength(0); i++)
             {
-                for (int x = 0; x < arrey.GetLength(1); x++) // ширина массива
+                for (int j = 0; j < myArrey.GetLength(1); j++)
                 {
-                    arrey[1, 2] = 1;
-                    arrey[2, 1] = 1;
-                    arrey[2, 2] = 1;
-                    arrey[2, 3] = 1;
-                    arrey[3, 0] = 1;
-                    arrey[3, 1] = 1;
-                    arrey[3, 2] = 1;
-                    arrey[3, 3] = 1;
-                    arrey[3, 4] = 1;
+                    if (i == 0)
+                    {
+                        Console.Write(displayValueZero);
+                    }
+                    else
+                    {
+                        if (j > middleValueOne && j < middleValueTwo)
+                        {
+                            Console.Write(displayValueOne);
+                        }
 
-                    Console.Write(arrey[y, x] + "\t");
+                        else
+                        {
+                            Console.Write(displayValueZero);
+                        }
+
+                    }
+
                 }
+                middleValueOne--;
+                middleValueTwo++;
                 Console.WriteLine();
             }
-            Console.ReadKey();
         }
     }
 }
