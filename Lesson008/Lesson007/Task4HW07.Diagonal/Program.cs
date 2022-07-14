@@ -4,20 +4,8 @@ namespace Task4HW07.Diagonal
 {
     internal class Program
     {
-        static void Main(string[] args)
+        static (int, int) MinMaxValuesInDiagonals(int[,] myArrey, int lengthMyArrey)
         {
-            int[,] myArrey = {
-                {11, 12, 13,14,15},
-                {00, 22, 44, 17, 97},
-                {02, 15, 10, 66, 76},
-                {40, 09, 03, 55, 37},
-                {58, 25, 53, 07, 44}
-            };
-
-            int lengthMyArrey = myArrey.GetLength(0);
-            if (lengthMyArrey == 0)
-                return;
-
             int largestValue = myArrey[0, 0];
             int smallestValue = myArrey[lengthMyArrey - 1, 0];
 
@@ -32,6 +20,24 @@ namespace Task4HW07.Diagonal
                     smallestValue = myArrey[lengthMyArrey - 1 - i, i];
                 }
             }
+            return (largestValue, smallestValue);
+        }
+        static void Main(string[] args)
+        {
+            int[,] myArrey = {
+                {11, 12, 13,14,15},
+                {00, 22, 44, 17, 97},
+                {02, 15, 10, 66, 76},
+                {40, 09, 03, 55, 37},
+                {58, 25, 53, 07, 44}
+            };
+
+            int lengthMyArrey = myArrey.GetLength(0);
+            if (lengthMyArrey == 0)
+                return;
+
+            (int largestValue, int smallestValue) input = MinMaxValuesInDiagonals(myArrey, lengthMyArrey);
+            int largestValue = input.Item1, smallestValue = input.Item2;
 
             Console.WriteLine("Largest value in diagonal A: " + largestValue);
             Console.WriteLine("Smallest value in diagonal B: " + smallestValue);
