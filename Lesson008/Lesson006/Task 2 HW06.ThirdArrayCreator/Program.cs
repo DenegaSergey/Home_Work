@@ -8,7 +8,13 @@ namespace Task_2_HW06.ThirdArrayCreator
 {
     internal class Program
     {
-        static int[] EqualArchives(int[] OutputKeyboardArrey, int[] OutputRandomArrey, int[] sumOfArchives)
+        static void DisplayEqualOnScreen(int[] sumOfArchives)
+        {
+            Console.WriteLine("Array content: ");
+            Console.WriteLine(string.Join("  ", sumOfArchives));
+
+        }
+        static int[] GetEqualArchives(int[] OutputKeyboardArrey, int[] OutputRandomArrey, int[] sumOfArchives)
         {
             for (int i = 0; i < sumOfArchives.Length; ++i)
             {
@@ -26,27 +32,25 @@ namespace Task_2_HW06.ThirdArrayCreator
         static void OutputRandomArrey(int[] arrayRandomInput)
         {
             Random random = new Random();
-
             for (int i = 0; i < arrayRandomInput.Length; i++)
             {
                 arrayRandomInput[i] = random.Next(20);
                 Console.WriteLine("Array element value " + " = " + arrayRandomInput[i]);
             }
-            
+
         }
         static void Main(string[] args)
         {
             int[] arrayRandomInput = new int[5];
-            OutputRandomArrey(arrayRandomInput);
-
             int[] arrayKeyboardInput = new int[5];
+            int[] sumOfArchives = new int[5];
+
+            OutputRandomArrey(arrayRandomInput);
             OutputKeyboardArrey(arrayKeyboardInput);
 
-            int[] sumOfArchives = new int[5];
-            sumOfArchives = EqualArchives(arrayKeyboardInput, arrayRandomInput, sumOfArchives);
+            sumOfArchives = GetEqualArchives(arrayKeyboardInput, arrayRandomInput, sumOfArchives);
 
-            Console.WriteLine("Array content: ");
-            Console.WriteLine(string.Join("  ", sumOfArchives));
+            DisplayEqualOnScreen(sumOfArchives);
         }
     }
 }

@@ -4,6 +4,14 @@ namespace Task5HW07.BookStore
 {
     internal class Program
     {
+        static void ShowCheapestBook(int min)
+        {
+            Console.WriteLine("The cheapest book: " + min);
+        }
+        static void ShowExpensiveBook(int max)
+        {
+            Console.WriteLine("Most expensive book: " + max);
+        }
         static void ExpensiveBook(int[,,] arreyBooks, int max)
         {
             for (int i = 0; i < arreyBooks.GetLength(0); i++)
@@ -11,8 +19,6 @@ namespace Task5HW07.BookStore
                     for (int k = 0; k < arreyBooks.GetLength(2); k++)
                         if (arreyBooks[i, j, k] > max)
                             max = arreyBooks[i, j, k];
-
-            Console.WriteLine("Most expensive book: " + max);
         }
         static void CheapestBook(int[,,] arreyBooks, int min)
         {
@@ -21,8 +27,6 @@ namespace Task5HW07.BookStore
                     for (int k = 0; k < arreyBooks.GetLength(2); k++)
                         if (arreyBooks[i, j, k] < min)
                             min = arreyBooks[i, j, k];
-
-            Console.WriteLine("The cheapest book: " + min);
         }
         static void Main(string[] args)
         {
@@ -50,8 +54,11 @@ namespace Task5HW07.BookStore
 
             int max = int.MinValue, min = int.MaxValue;
 
-            CheapestBook(arreyBooks, min);
             ExpensiveBook(arreyBooks, max);
+            ShowExpensiveBook(max);
+
+            CheapestBook(arreyBooks, min);
+            ShowCheapestBook(min);
         }
     }
 }

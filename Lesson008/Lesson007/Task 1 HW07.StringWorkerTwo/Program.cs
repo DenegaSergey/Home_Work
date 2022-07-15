@@ -1,33 +1,62 @@
-﻿ using System;
+﻿using System;
 
 namespace Task1HW07.StringWorkerTwo
 {
-    internal class Program
+    internal class Programarre
     {
-        static void WordReplacement(string[] arreyWords, string longWord, string shortestWord)
+        static void ShowArreyResize(string[] arreyWords)
         {
-            int indexMaxWord = Array.IndexOf(arreyWords, longWord);
-            int indexMinWord = Array.IndexOf(arreyWords, shortestWord);
+            Console.WriteLine(String.Join(" ", arreyWords) + "\n");
 
-            Console.WriteLine(" Min index: " + indexMaxWord); //10
-            Console.WriteLine(" Max index: " + indexMinWord + "\n"); //6
+        }
+        static void ArreyResize(string[] arrayAfterDeletion)
+        {
+            Array.Resize(ref arrayAfterDeletion, arrayAfterDeletion.Length - 1);
+        }
+        static string[] DeletingLongWord(string[] arreyWords, string longWord)
+        {
+            int index = Array.IndexOf(arreyWords, longWord);
 
+            for (int i = index; i < arreyWords.Length - 1; i++)
+            {
+                arreyWords[i] = arreyWords[i + 1];
+            }
+            return arreyWords;
+        }
+        static void ReplacingIndexes(string[] arreyWords)
+        {
             string temp = arreyWords[10];
             arreyWords[10] = arreyWords[6];
             arreyWords[6] = temp;
-
-            {
-                int index = Array.IndexOf(arreyWords, longWord);
-
-                for (int i = index; i < arreyWords.Length - 1; i++)
-                {
-                    arreyWords[i] = arreyWords[i + 1];
-                }
-                Array.Resize(ref arreyWords, arreyWords.Length - 1);
-                Console.WriteLine(String.Join(" ", arreyWords) + "\n");
-            }
         }
-        static string ShortestWord(string[] arreyWords)
+        static void ShowIndexMinWord(int indexMinWord)
+        {
+            Console.WriteLine(" Max index: " + indexMinWord + "\n"); //6
+        }
+        static int GetIndexShortestWord(string[] arreyWords, string shortestWord)
+        {
+            int indexMinWord = Array.IndexOf(arreyWords, shortestWord);
+            return indexMinWord;
+        }
+        static void ShowIndexMaxWord(int indexMaxWord)
+        {
+            Console.WriteLine(" Min index: " + indexMaxWord); //10
+        }
+        static int GetIndexLongWord(string[] arreyWords, string longWord)
+        {
+            int indexMaxWord = Array.IndexOf(arreyWords, longWord);
+            return indexMaxWord;
+        }
+        static string[] SplitWords(string userWords)
+        {
+            string[] arreyWords = userWords.Split(new[] { " ", ",", "." }, StringSplitOptions.None);
+            return arreyWords;
+        }
+        static void ShowShortestWord(string shortestWord)
+        {
+            Console.WriteLine("Shortest word: " + shortestWord + "\n");
+        }
+        static string GetShortestWord(string[] arreyWords)
         {
             string shortestWord = arreyWords[0];
             int smallestLength = arreyWords[0].Length;
@@ -39,12 +68,22 @@ namespace Task1HW07.StringWorkerTwo
                     shortestWord = arreyWords[i];
                 }
             }
-            Console.WriteLine("Shortest word: " + shortestWord + "\n");
             return shortestWord;
         }
-        static string ArraySort(string userWords)
+        static void ShowNumberOfLetters(string letters)
         {
-            string[] arrey = userWords.Split(' ', ',', '.');
+            Console.WriteLine("The number of letters is: {0}", letters + "\n");
+        }
+        static void ShowNumberOfPunctuation(string punctuationCount)
+        {
+            Console.WriteLine("Number of punctuation marks: " + punctuationCount + "\n");
+        }
+        static void ShowSortArrey(string[] arrey)
+        {
+            Console.WriteLine(String.Join(" ", arrey) + "\n");
+        }
+        static string[] SortArrey(string[] arrey)
+        {
 
             foreach (var sub in arrey)
             {
@@ -53,10 +92,14 @@ namespace Task1HW07.StringWorkerTwo
 
             Array.Sort(arrey, (x, y) => x.Length.CompareTo(y.Length));
             Array.Reverse(arrey);
-            Console.WriteLine(String.Join(" ", arrey) + "\n");
-            return userWords;
+            return arrey;
         }
-        static string NumberOfLetters(string userWords)
+        static string[] SplitUserWord(string userWords)
+        {
+            string[] arreySort = userWords.Split(' ', ',', '.');
+            return arreySort;
+        }
+        static string GetNumberOfLetters(string userWords)
         {
             int letters = 0;
             for (int i = 0; i < userWords.Length; i++)
@@ -64,10 +107,9 @@ namespace Task1HW07.StringWorkerTwo
                 if (char.IsLetter(userWords[i]))
                     letters++;
             }
-            Console.WriteLine("The number of letters is: {0}", letters + "\n");
             return letters.ToString();
         }
-        static string NumberOfPunctuation(string userWords)
+        static string GetNumberOfPunctuation(string userWords)
         {
             int punctuationCount = 0;
             for (int i = 0; i < userWords.Length; i++)
@@ -75,11 +117,13 @@ namespace Task1HW07.StringWorkerTwo
                 if (Char.IsPunctuation(userWords[i]))
                     punctuationCount++;
             }
-            Console.WriteLine("Number of punctuation marks: " + punctuationCount + "\n");
-
             return punctuationCount.ToString();
         }
-        static string LongestWord(string[] arreyWords, string word)
+        static void ShowLongestWord(string word)
+        {
+            Console.WriteLine("Longest word: " + word + "\n");
+        }
+        static string GetLongestWord(string[] arreyWords, string word)
         {
             int longestWord = 0;
             foreach (String s in arreyWords)
@@ -90,27 +134,39 @@ namespace Task1HW07.StringWorkerTwo
                     longestWord = s.Length;
                 }
             }
-            Console.WriteLine("Longest word: " + word + "\n");
             return word;
         }
-
         static void Main(string[] args)
         {
             string userWords = "Всегда пишите код так, будто сопровождать его будет склонный к насилию психопат, который знает, где вы живете.";
-            string[] arreyWords = userWords.Split(new[] { " ", ",", "." }, StringSplitOptions.None);
             string word = "";
+            string[] arreyWords = SplitWords(userWords);
 
-            string longWord = LongestWord(arreyWords, word);
-            string shortestWord = ShortestWord(arreyWords);
+            string longWord = GetLongestWord(arreyWords, word);
+            ShowLongestWord(longWord);
 
-            WordReplacement( arreyWords,longWord,shortestWord);
+            string shortestWord = GetShortestWord(arreyWords);
+            ShowShortestWord(shortestWord);
 
-            string punctuation = NumberOfPunctuation(userWords);
-            string letters = NumberOfLetters(userWords);
-            string sort = ArraySort(userWords);
+            int indexMaxWord = GetIndexLongWord(arreyWords, longWord);
+            ShowIndexMaxWord(indexMaxWord);
+            int indexMinWord = GetIndexShortestWord(arreyWords, shortestWord);
+            ShowIndexMinWord(indexMinWord);
 
-            Console.ReadKey();
+            ReplacingIndexes(arreyWords);
+            string[] arrayAfterDeletion = DeletingLongWord(arreyWords, longWord);
+            ArreyResize(arrayAfterDeletion);
+            ShowArreyResize(arreyWords);
 
+            string punctuation = GetNumberOfPunctuation(userWords);
+            ShowNumberOfPunctuation(punctuation);
+
+            string letters = GetNumberOfLetters(userWords);
+            ShowNumberOfLetters(letters);
+
+            string[] arrey = SplitUserWord(userWords);
+            string[] sortArrey = SortArrey(arrey);
+            ShowSortArrey(arrey);
         }
     }
 }

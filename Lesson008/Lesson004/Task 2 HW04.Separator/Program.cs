@@ -5,7 +5,7 @@ namespace Task_2HW04.Separator
 {
     internal class Program
     {
-        static string InputWord()
+        static string GetWord()
         {
             string userWord = Console.ReadLine();
 
@@ -17,7 +17,7 @@ namespace Task_2HW04.Separator
         }
         static void Main(string[] args)
         {
-            string result = InputWord();
+            string result = GetWord();
 
             string[] word1 = result.Split(' ');
             foreach (string text in word1)

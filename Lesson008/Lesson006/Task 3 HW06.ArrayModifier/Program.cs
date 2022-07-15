@@ -4,6 +4,19 @@ namespace Task3HW06.ArrayModifier
 {
     internal class Program
     {
+        static int EnteringSizeArrey()
+        {
+            Console.Write("Enter the size of the array: ");
+            int elementsCount = int.Parse(Console.ReadLine());
+
+            return elementsCount;
+        }
+        static int EnteringLastNumber()
+        {
+            Console.Write("Enter last value: ");
+            int userlastNumber = Convert.ToInt32(Console.ReadLine());
+            return userlastNumber;
+        }
         static void DisplayingAnArray(int[] myArrey)
         {
             Console.WriteLine("Array output:");
@@ -12,9 +25,8 @@ namespace Task3HW06.ArrayModifier
             {
                 Console.WriteLine(myArrey[i]);
             }
-
         }
-        static int[] ToLeft(int[] myArrey)
+        static int[] OffsetToLeft(int[] myArrey)
         {
             int toLeft = myArrey[0];
             for (int i = 0; i < myArrey.Length - 1; i++)
@@ -25,21 +37,17 @@ namespace Task3HW06.ArrayModifier
 
             return myArrey;
         }
-        static int LastNumberInArray(int[] myArrey)
+        static int GetLastNumberInArray(int[] myArrey)
         {
-            int lastNumber = 0;
-
-            Console.Write("Enter last value: ");
-            lastNumber = Convert.ToInt32(Console.ReadLine());
+            int lastNumber = EnteringLastNumber();
 
             myArrey[myArrey.Length - 1] = lastNumber;
 
             return lastNumber;
         }
-        static int[] NumberOfElementsInArray()
+        static int[] GetNumberOfElementsInArray()
         {
-            Console.Write("Enter the size of the array: ");
-            int elementsCount = int.Parse(Console.ReadLine());
+            int elementsCount = EnteringSizeArrey();
             int[] myArrey = new int[elementsCount];
 
             for (int i = 0; i < elementsCount - 1; i++)
@@ -50,11 +58,11 @@ namespace Task3HW06.ArrayModifier
         }
         static void Main(string[] args)
         {
-            int[] myArrey = NumberOfElementsInArray();
+            int[] myArrey = GetNumberOfElementsInArray();
 
-            int lastNumber = LastNumberInArray(myArrey);
+            int lastNumber = GetLastNumberInArray(myArrey);
 
-            int[] myArreySecond = ToLeft(myArrey); //move the element to the left
+            int[] myArreySecond = OffsetToLeft(myArrey); 
 
             DisplayingAnArray(myArrey);
 

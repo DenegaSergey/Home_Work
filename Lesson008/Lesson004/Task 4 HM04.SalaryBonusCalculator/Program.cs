@@ -4,7 +4,28 @@ namespace Task_4_HW04.SalaryBonusCalculator
 {
     internal class Program
     {
-        static double Bonus(int experience)
+        static void ShowSalaryAndBonus(int salary, double bonus, double result)
+        {
+            Console.WriteLine($"Your Bonus - {CalculationBonus(salary, bonus)}, to payoff - {result}");
+        }
+        static int EnteringUserExperience()
+        {
+            Console.Write("Your experience: ");
+            int experience = int.Parse(Console.ReadLine());
+            return experience;
+        }
+        static int EnteringUserSalary()
+        {
+            Console.Write("Your salary: ");
+            int salary = int.Parse(Console.ReadLine());
+            return salary;
+        }
+        static double CalculationBonus(int salary, double bonus)
+        {
+            double allowance = (Math.Round(salary * bonus, 2));
+            return allowance;
+        }
+        static double GetBonusValue(int experience)
         {
             double bonus = 0;
             if (experience < 5) bonus = 0.10;
@@ -19,22 +40,19 @@ namespace Task_4_HW04.SalaryBonusCalculator
         }
         static double PayoffСalculation(int salary, double bonus)
         {
-             double result = salary + (Math.Round(salary * bonus, 2));
+            double result = salary + (Math.Round(salary * bonus, 2));
 
             return result;
         }
         static void Main(string[] args)
         {
-            Console.Write("Your salary: ");
-            int salary = int.Parse(Console.ReadLine());
+            int salary = EnteringUserSalary();
+            int experience = EnteringUserExperience();
 
-            Console.Write("Your experience: ");
-            int experience = int.Parse(Console.ReadLine());
-
-            double bonus = Bonus(experience);
+            double bonus = GetBonusValue(experience);
             double result = PayoffСalculation(salary, bonus);
 
-            Console.WriteLine($"Your Bonus - {Math.Round(salary * bonus, 2)}, to payoff - {result}");
+            ShowSalaryAndBonus(salary, bonus, result);
         }
     }
 }

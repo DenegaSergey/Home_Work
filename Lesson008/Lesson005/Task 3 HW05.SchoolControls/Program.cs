@@ -4,8 +4,16 @@ namespace Task3HW05.SchoolControls
 {
    internal class Program
     {
-        static int YourQuarter(int controlTest, string firstQuarter, string secondQuarter, string thridQuarter, string fourthQuarter)
+         static int GetTestNumber()
         {
+            Console.WriteLine("Your control test number: ");
+            int userControlTest = Convert.ToInt32(Console.ReadLine());
+            return userControlTest;
+        }
+        static int GetQuarter(int controlTest)
+        {
+            const string firstQuarter = "First Quarter", secondQuarter = "Second Quarter ", thridQuarter = "Thrid Quarter", fourthQuarter = "Fourth Quarter";
+
             if (controlTest <= 15)
             {
                 Console.WriteLine(firstQuarter);
@@ -26,13 +34,9 @@ namespace Task3HW05.SchoolControls
         }
         static void Main(string[] args)
         {
-            string firstQuarter = "First Quarter", secondQuarter = "Second Quarter ", thridQuarter = "Thrid Quarter", fourthQuarter = "Fourth Quarter";
-            int controlTest;
+            int controlTest = GetTestNumber();
 
-            Console.WriteLine("Your control test number: ");
-            controlTest = Convert.ToInt32(Console.ReadLine());
-
-            YourQuarter(controlTest, firstQuarter, secondQuarter, thridQuarter, fourthQuarter);
+            GetQuarter(controlTest);
         }
     }
 }

@@ -8,31 +8,34 @@ namespace Task_3_HW04.Combiner
         {
             Console.WriteLine(text);
         }
-        static string TextOutput(string firstName, string lastName)
+        static string ShowGreeting(string firstName, string lastName)
         {
             string text = "Hello " + firstName + " " + lastName + "!" + " " + "It's a god day today!";
             return text;
         }
-        static (string firstName, string lastName) InputFirstAndLastName()
+        static string GetFirstName()
         {
             Console.Write("Enter your first name: ");
-            string firstName = Console.ReadLine();
+            string userFirstName = Console.ReadLine();
 
             Console.Clear();
-
-            Console.Write("Enter your last name: ");
-            string lastName = Console.ReadLine();
-
-            Console.Clear();
-
-            return (firstName, lastName);
+            return userFirstName;
         }
+        static string GetLastName()
+        {
+            Console.Write("Enter your last name: ");
+            string userLastName = Console.ReadLine();
+
+            Console.Clear();
+            return userLastName;
+        }
+       
         static void Main(string[] args)
         {
-            var input = InputFirstAndLastName();
-            string firstName = input.firstName, lastName = input.lastName;
+            string firstName = GetFirstName();
+            string lastName = GetLastName();
 
-            string text = TextOutput(firstName, lastName);
+            string text = ShowGreeting(firstName, lastName);
 
             OutputOnDisplay(text);
 

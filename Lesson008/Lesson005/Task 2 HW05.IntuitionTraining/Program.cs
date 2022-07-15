@@ -38,9 +38,7 @@ namespace Task2HW05.IntuitionTraining
             {
                 guess = 0;
                 number = random.Next(min, max + 1);
-                int number1 = HiddenNumber(guess, number, min, max);
             }
         }
     }
-    
 }

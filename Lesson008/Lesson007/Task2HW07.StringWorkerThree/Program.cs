@@ -5,10 +5,41 @@ namespace Task2HW07.StringWorkerThree
 {
     internal class Program
     {
-        static string[] SeparationUserString(string userString, string separator)
+        static void ShowCalculationResult(int calculationResult)
         {
-            string[] separationResult = Regex.Split(userString, separator, RegexOptions.IgnoreCase);
-
+            Console.WriteLine(calculationResult);
+        }
+        static int CalculateResult(int leftNumbers, int rightNumbers)
+        {
+            int calculationResult = leftNumbers * rightNumbers;
+            return calculationResult;
+        }
+        static int ConvertRightNumber(string[] digitsAfterDivision)
+        {
+            int rightNumbers = int.Parse(digitsAfterDivision[1]);
+            return rightNumbers;
+        }
+        static int ConvertLeftNumber(string[] digitsAfterDivision)
+        {
+            int leftNumbers = int.Parse(digitsAfterDivision[0]);
+            return leftNumbers;
+        }
+        static string[] SplitByCharacter(string numbers)
+        {
+            string[] digitsAfterDivision = numbers.Split('*');
+            return digitsAfterDivision;
+        }
+        static void ShowNumbers(string numbers)
+        {
+            Console.WriteLine(numbers);
+        }
+        static string GetNumbersString(string[] separationResult)
+        {
+            string numbers = string.Join("", separationResult);
+            return numbers;
+        }
+        static string[] InitializeArray(string[] separationResult)
+        {
             for (int i = 0; i < separationResult.Length; i++)
             {
                 if (i < separationResult.Length - 1)
@@ -16,24 +47,31 @@ namespace Task2HW07.StringWorkerThree
             }
             return separationResult;
         }
+        static string[] DivideUserString(string userString)
+        {
+            string separator = "([*])|[a-z]+";
+
+            string[] separationResult = Regex.Split(userString, separator, RegexOptions.IgnoreCase);
+            return separationResult;
+        }
         static void Main(string[] args)
         {
             string userString = "gdfgdf234dg54gf*23oP42";
-            string separator = "([*])|[a-z]+";
-            string[] separationResult = SeparationUserString(userString, separator);
+            string[] separationResult = DivideUserString(userString);
 
-            string numbers = string.Join("", separationResult);
+            InitializeArray(separationResult);
 
-            Console.WriteLine(numbers);
+            string numbers = GetNumbersString(separationResult);
 
-            string[] number = numbers.Split('*');
+            ShowNumbers(numbers);
 
-            int leftNumbers = int.Parse(number[0]);
-            int rightNumbers = int.Parse(number[1]);
+            string[] digitsAfterDivision = SplitByCharacter(numbers);
 
-            int calculationResult = leftNumbers * rightNumbers;
+            int leftNumbers = ConvertLeftNumber(digitsAfterDivision);
+            int rightNumbers = ConvertRightNumber(digitsAfterDivision);
 
-            Console.WriteLine(calculationResult);
+            int calculationResult = CalculateResult(leftNumbers, rightNumbers);
+            ShowCalculationResult(calculationResult);
         }
     }
 }
