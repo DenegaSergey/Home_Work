@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Motorcycle
 {
@@ -37,17 +33,10 @@ namespace Motorcycle
 
         public string GetAllInfo()
         {
-            var createdAt = "";
-            createdAt += _createdAt;
+            var allInfo = "";
+            allInfo += $"{"Model:",-20}| {_model}\n" + $"{"Make:",-20}| {_make}\n" + $"{"CreatedAt:",-20}| {_createdAt}\n" + $"{"Condition:",-20}| {_condition}\n" + $"{"Mileage:",-20}| {_mileage}\n" + $"{"MotorcycleType:",-20}| {_motorcycleType}\n" + $"{"ExteriorColor: ",-20}| {_exteriorColor}";
 
-            Console.WriteLine($"{"Model:",-20} |{_model}");
-            Console.WriteLine($"{"Make:",-20} |{_make}");
-            Console.WriteLine($"{"CreatedAt:",-20} |{_createdAt}");
-            Console.WriteLine($"{"Condition:",-20} |{_condition}");
-            Console.WriteLine($"{"Mileage:",-20} |{_mileage}");
-            Console.WriteLine($"{"MotorcycleType:",-20} |{_motorcycleType}");
-            Console.WriteLine($"{"ExteriorColor:",-20} |{_exteriorColor}");
-            return null;
+            return allInfo;
         }
     }
 }
