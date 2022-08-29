@@ -1,12 +1,11 @@
 ﻿using MotorcyclesStore.Core.Interfaces;
 using MotorcyclesStore.Core.Models;
-using Serilog;
 
 namespace MotorcyclesStore.BLL.Services
 {
     public class MotoStoreService : IMotoStoreService
     {
-        public readonly IMotoInfoRepository _motoInfoRepository;
+        private readonly IMotoInfoRepository _motoInfoRepository;
 
         public MotoStoreService(IMotoInfoRepository motoInfoRepository)
         {
@@ -17,7 +16,7 @@ namespace MotorcyclesStore.BLL.Services
         {
             return _motoInfoRepository.GetFirstOrDefaultById(id);
         }
-
+      
         public string GetMotorcycles()
         {
             var motorcycles = _motoInfoRepository.GetAll();

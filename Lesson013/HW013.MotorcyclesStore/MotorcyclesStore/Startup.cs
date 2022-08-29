@@ -1,5 +1,4 @@
 ﻿using MotorcyclesStore.Core.Interfaces;
-using MotorcyclesStore.Core.Models;
 using Serilog;
 
 namespace MotorcyclesStore.UI
@@ -31,50 +30,24 @@ namespace MotorcyclesStore.UI
                 switch (command)
                 {
                     case "1":
-                        GetAll();
+                        _motoStoreController.GetAll();
                         break;
                     case "2":
-                        GetFirstOrDefaultById();
+                        _motoStoreController.GetFirstOrDefaultById(0);
                         break;
                     case "3":
-                        Create();
+                        _motoStoreController.Create();
                         break;
                     case "4":
-                        Update();
+                        _motoStoreController.Update();
                         break;
                     case "5":
-                        Delete();
+                        _motoStoreController.Delete();
                         break;
                     default:
                         return;
                 }
             }
         }
-
-        private void GetAll()
-        {
-            _motoStoreController.GetAll();
-        }
-
-        private void GetFirstOrDefaultById()
-        {
-            _motoStoreController.GetFirstOrDefaultById(0);
-        }
-
-        private void Delete()
-        {
-            _motoStoreController.Delete();
-        }
-
-        private void Update()
-        {
-            _motoStoreController.Update();
-        }
-
-        private void Create()
-        {
-            _motoStoreController.Create();
-        }
-
     }
 }
