@@ -1,8 +1,10 @@
-﻿namespace Airport.Core.Models
+﻿using Airport.Core.Constants;
+
+namespace Airport.Core.Models
 {
     public class User : BaseModel
     {
-        public string Name{ get; set; }
-        public  BaggageInfo  BaggageInfo { get; set; }
+        public string Name { get; set; }
+        public BaggageInfo BaggageInfo { get; set; }
     }
 }

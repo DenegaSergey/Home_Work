@@ -1,4 +1,4 @@
-﻿
+﻿using Airport.Core.Constants;
 using Airport.Core.System;
 using Airport.DAL.Repositories;
 
@@ -7,9 +7,12 @@ namespace Airport.BLL.Services
     public class CheckInService
     {
         private readonly FlightInfoRepository _flightInfoRepository;
+        private readonly BaggageInfo _baggageInfo;
+
         public CheckInService()
         {
             _flightInfoRepository = new FlightInfoRepository();
+            _baggageInfo = new BaggageInfo();
         }
         public string GetAllFlightsInfo()
         {
@@ -57,9 +60,36 @@ namespace Airport.BLL.Services
             var userInput = Console.ReadLine();
 
             return userInput!.Equals("Yes", StringComparison.OrdinalIgnoreCase) ? Result.Yes : Result.No();
-
-
         }
 
+        public void CheckWeight()
+        {
+            while (true)
+            {
+                Console.Write("Enter the weight of your baggage: ");
+                int userValue = Convert.ToInt32(Console.ReadLine());
+
+                if (userValue < BaggageInfo.MinWight)
+                {
+                    Console.WriteLine("Enter the correct weight of your baggage.");
+
+                }
+                else if (userValue < BaggageInfo.MaxWight)
+                {
+                    Console.WriteLine("You can take this baggage with you");
+                    break;
+                }
+                else
+                {
+                    Console.WriteLine("Maximum weight exceeded. Send your baggage to the luggage compartment");
+                    break;
+                }
+            }
+        }
+        public string GetUserName()
+        {
+            string userName = Console.ReadLine();
+            return userName;
+        }
     }
 }

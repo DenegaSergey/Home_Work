@@ -1,6 +1,4 @@
-﻿using System.Security.AccessControl;
-
-namespace Airport.Core.Models
+﻿namespace Airport.Core.Models
 {
     public class FlightInfo : BaseModel
     {
